@@ -15,6 +15,7 @@ export class AppComponent {
   constructor(router: Router, activatedRoute: ActivatedRoute, title: Title) {
     router.events.filter(e => e instanceof NavigationEnd).subscribe((n: NavigationEnd) => {
       let pageTitle = router.routerState.snapshot.root.children[0].data['title'];
+      
       if (pageTitle) {
         title.setTitle(pageTitle);
       } else if (pageTitle !== false) {
