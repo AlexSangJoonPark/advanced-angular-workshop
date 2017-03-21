@@ -8,7 +8,7 @@ import 'rxjs/add/operator/startWith';
   selector: 'app-activity-list',
   template: `
 <div *ngFor="let activity of activities | async" class="activity">
-  <h2>{{activity.title}}</h2>
+  <h2 [routerLink]="['/activities', activity.title]">{{activity.title}}</h2>
   <p>{{activity.description}}</p>
 </div>
   `,
