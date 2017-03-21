@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { ActivityListComponent } from './activity-list.component';
 import { ActivityViewComponent } from './activity-view.component';
 
+import { AngularFireModule } from 'angularfire2';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,13 @@ import { ActivityViewComponent } from './activity-view.component';
       {path: 'about', loadChildren: './about/about.module#AboutModule', data: {title: 'About This App'}},
       {path: 'submit', loadChildren: './submit/submit.module#SubmitModule', data: {title: 'Submit a new Activity'}},
       ]),
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyBesFDpTApha8DzEfajOYSJhUhpdNCbULg",
+      authDomain: "melbourne-things-to-do.firebaseapp.com",
+      databaseURL: "https://melbourne-things-to-do.firebaseio.com",
+      storageBucket: "melbourne-things-to-do.appspot.com",
+      messagingSenderId: "610780297110"
+      })
   ],
   providers: [],
   bootstrap: [AppComponent]
