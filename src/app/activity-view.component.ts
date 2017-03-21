@@ -7,6 +7,7 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
 
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-activity-view',
@@ -20,7 +21,7 @@ export class ActivityViewComponent {
 
   activities: Observable<any[]>;
   activity: Observable<any>;
-  constructor(http: Http, public route: ActivatedRoute) {
+  constructor(http: Http, public route: ActivatedRoute, title: Title) {
     let activities = http.get('https://melbourne-things-to-do.firebaseio.com/activities.json')
       .map(res => res.json());
 
@@ -32,5 +33,6 @@ export class ActivityViewComponent {
     this.activity = route.params.switchMap(params => 
       this.activities.map(list => list.find(item => item.title == params['title']))
     );
+    this.activity.subscribe(activity => title.setTitle(activity.title));
   }
 }
